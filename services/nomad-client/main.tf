@@ -160,6 +160,7 @@ resource "aws_security_group" "nomad-client" {
 
 // EC2 Instances
 
+// TODO: Resume using for_each and leverage Autoscaling Groups with Launch Configurations.
 // resource "aws_instance" "nomad-client" {
 //   for_each = local.availability_zones
 
