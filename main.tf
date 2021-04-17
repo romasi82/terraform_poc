@@ -68,20 +68,20 @@ module "vpn" {
   }
 }
 
-// module "bastion" {
-//   source = "./services/bastion"
+module "bastion" {
+  source = "./services/bastion"
 
-//   ami_id = var.services.bastion.ami_id
-//   instance_type = var.services.bastion.instance_type
-//   availability_zones = var.services.bastion.availability_zones
-//   network = module.network
+  ami_id = var.services.bastion.ami_id
+  instance_type = var.services.bastion.instance_type
+  availability_zones = var.services.bastion.availability_zones
+  network = module.network
 
-//   tags = {
-//     Environment = var.environment
-//     Application = var.application
-//     Service = "bastion"
-//   }
-// }
+  tags = {
+    Environment = var.environment
+    Application = var.application
+    Service = "bastion"
+  }
+}
 
 module "consul" {
   source = "./services/consul"
@@ -138,11 +138,11 @@ output "vpn" {
   }
 }
 
-// output "bastion" {
-//   value = {
-//     for instance in module.bastion.instances: instance.tags["Name"] => instance.private_ip
-//   }
-// }
+output "bastion" {
+  value = {
+    for instance in module.bastion.instances: instance.tags["Name"] => instance.private_ip
+  }
+}
 
 output "consul" {
   value = {
