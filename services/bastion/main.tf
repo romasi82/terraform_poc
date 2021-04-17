@@ -125,7 +125,7 @@ resource "aws_instance" "bastion" {
 
   availability_zone           = each.value.availability_zone
   subnet_id                   = each.value.subnet_id
-  associate_public_ip_address = true // false
+  associate_public_ip_address = false
 
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
