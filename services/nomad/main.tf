@@ -123,39 +123,6 @@ resource "aws_security_group" "nomad" {
     cidr_blocks = [var.network.vpc.cidr_block]
   }
 
-  // Consul
-  // ingress {
-  //   description = "Consul DNS"
-  //   from_port = 8600
-  //   to_port = 8600
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // ingress {
-  //   description = "Consul DNS"
-  //   from_port = 8600
-  //   to_port = 8600
-  //   protocol = "udp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // ingress {
-  //   description = "Consul HTTP"
-  //   from_port = 8500
-  //   to_port = 8500
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // ingress {
-  //   description = "Consul gRPC"
-  //   from_port = 8502
-  //   to_port = 8502
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
   ingress {
     description = "Consul LAN Serf"
     from_port = 8301
@@ -171,39 +138,6 @@ resource "aws_security_group" "nomad" {
     protocol = "udp"
     cidr_blocks = [var.network.vpc.cidr_block]
   }
-
-  // ingress {
-  //   description = "Consul WAN Serf"
-  //   from_port = 8302
-  //   to_port = 8302
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // ingress {
-  //   description = "Consul WAN Serf"
-  //   from_port = 8302
-  //   to_port = 8302
-  //   protocol = "udp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // ingress {
-  //   description = "Consul Server RPC"
-  //   from_port = 8300
-  //   to_port = 8300
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
-  // Nomad and Consul
-  // ingress {
-  //   description = "Consul-Nomad Connect"
-  //   from_port = 20000
-  //   to_port = 32000
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
 
   egress {
     from_port   = 0
@@ -222,6 +156,7 @@ resource "aws_security_group" "nomad" {
 
 // EC2 Instances
 
+// TODO: Resume using for_each and leverage Autoscaling Groups with Launch Configurations.
 // resource "aws_instance" "nomad" {
 //   for_each = local.availability_zones
 
