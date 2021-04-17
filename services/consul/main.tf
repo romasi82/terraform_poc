@@ -159,14 +159,6 @@ resource "aws_security_group" "consul" {
     cidr_blocks = [var.network.vpc.cidr_block]
   }
 
-  // ingress {
-  //   description = "Consul-Nomad Connect"
-  //   from_port = 20000
-  //   to_port = 32000
-  //   protocol = "tcp"
-  //   cidr_blocks = [var.network.vpc.cidr_block]
-  // }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -184,6 +176,7 @@ resource "aws_security_group" "consul" {
 
 // EC2 Instances
 
+// TODO: Resume using for_each and leverage Autoscaling Groups with Launch Configurations.
 // resource "aws_instance" "consul" {
 //   for_each = local.availability_zones
 
